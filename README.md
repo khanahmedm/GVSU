@@ -1,0 +1,2 @@
+# GVSU
+GVSU school assignments
