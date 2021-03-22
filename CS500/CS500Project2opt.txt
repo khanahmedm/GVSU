@@ -1,0 +1,90 @@
+Project 2
+(Optional Part)
+
+CS 500
+Prepared by
+Ahmed M Khan
+
+
+
+/***************************************************************/
+/* Author: Ahmed M Khan
+/* Course No/Section: CS 500
+/* Date: 05/29/2002
+/* File Name: p2.c
+/* Project No: 2
+/* Description: C program 'Palindrome'
+/****************************************************************/
+
+
+# include<stdio.h>
+# include<stdlib.h>
+# include<string.h>
+
+# define TRUE 1
+# define FALSE 0
+
+/*prototype*/
+int palindrome(int first, int last, char inputString[]);
+
+/*main function*/
+int main()
+{
+	int first=0, last=0, pin=0, pout=0;
+	char inputString[100], newString[100]="";
+
+	printf("\nPlease enter the word or phrase:");
+	gets(inputString);
+	
+	/*removing non-alpha characters and changing to lowercase*/	
+	while(inputString[pin]!='\0')
+	{	
+		if((inputString[pin]>=65 && inputString[pin]<=90)||
+		(inputString[pin]>=97 && inputString[pin]<=122))
+		{
+			if(inputString[pin]>=65 && inputString[pin]<=90)
+			{		
+				newString[pout]=inputString[pin]+32;
+				pin++;
+				pout++;
+			}
+			else
+			{
+				newString[pout]=inputString[pin];
+				pin++;
+				pout++;
+			}
+		}
+		
+		else
+			pin++;
+		
+	}
+
+	last=strlen(newString);
+	
+	if(palindrome(first, last-1, newString)==TRUE)
+		printf("\nString is Palindrome\n");
+	else
+		printf("\nString is not Palindrome\n");
+
+	printf("\nString: %s\n", newString);
+
+	return 0;
+}
+
+
+/*Palindrome function*/
+int palindrome(int first, int last, char inputString[])
+{
+	if(first > last)
+		return TRUE;
+
+	if(inputString[first]!=inputString[last])
+		return FALSE;
+
+	else if(inputString[first]==inputString[last])
+		return palindrome((first+1), (last-1), inputString);
+}
+
+	
